@@ -34,7 +34,7 @@ class CryptoLight():
                  store_max_prices=2,
                  flicker_lights=1,
                  transition_time=10,
-                 flickr_amount=10,
+                 flicker_amount=10,
                  max_diff=25.0,
                  max_bright=254,
                  base_url="https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=",
@@ -88,7 +88,7 @@ class CryptoLight():
         self.store_max_prices = store_max_prices
         self.flicker_lights = flicker_lights
         self.transition_time = transition_time,
-        self.flickr_amount = flickr_amount,
+        self.flicker_amount = flicker_amount,
         self.max_diff = max_diff
         self.max_bright = max_bright
         self.verbose = verbose
@@ -185,7 +185,7 @@ class CryptoLight():
                             intensity,
                             transition_time=10,
                             flicker_lights=1,
-                            flickr_amount=5):
+                            flicker_amount=5):
         """
         Deliver the payload to the lights function.
 
@@ -203,13 +203,13 @@ class CryptoLight():
             time to flickr and transition to the new brightness/colour
         flicker_lights : boolean
             should the lights flicker?
-        flickr_amount : int
+        flicker_amount : int
             how many times should the lights flicker?
         """
         if self.flicker_lights == 1:
                 curr_settings = bridge.get_light(lights[0].name)
                 if col != curr_settings["state"]["xy"]:
-                    for i in range(flickr_amount):
+                    for i in range(self.flicker_amount):
                         bridge.set_light([l.name for l in lights],{"on": False,
                                                                     "bri": intensity,
                                                                     "transitiontime": 1,
@@ -328,7 +328,7 @@ if __name__ == "__main__":
                      retries=cparser.getint("general", "retries"),
                      flicker_lights=cparser.getint("general", "flicker_lights"),
                      transition_time=cparser.getint("general", "transition_time"),
-                     flickr_amount=cparser.getint("general", "flickr_amount"),
+                     flicker_amount=cparser.getint("general", "flicker_amount"),
                      store_max_prices=cparser.getint("general", "store_max_prices"),
                      max_diff=cparser.getfloat("general", "max_diff"),
                      max_bright=cparser.getfloat("general", "max_bright"))
