@@ -6,7 +6,8 @@ To run the script:
 
 1. Install the environment from the .yml file
 2. Change the IP in the cryptolight_config.ini file to your hub
-3. Run the crytolight.py script
+3. Press the sync button on your hub and run back to your computer (within 30 seconds!)
+4. Run the crytolight.py script
 
 ## Parameters
 
